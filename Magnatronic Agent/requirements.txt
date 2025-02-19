@@ -1,0 +1,17 @@
+# Core dependencies
+python-dotenv>=1.0.0
+fastapi>=0.100.0
+uvicorn>=0.23.0
+pydantic>=2.0.0
+redis>=4.6.0
+celery>=5.3.1
+
+# Agent-specific dependencies
+tensorflow>=2.13.0  # For ML-based agents
+requests>=2.31.0  # For API interactions
+pillow>=10.0.0  # For image processing
+beautifulsoup4>=4.12.2  # For web scraping
+
+# Monitoring and logging
+prometheus-client>=0.17.0
+python-json-logger>=2.0.7
