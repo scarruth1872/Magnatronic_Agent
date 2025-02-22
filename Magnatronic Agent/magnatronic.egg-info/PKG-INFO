@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: magnatronic
+Version: 0.1.0
+Summary: Magnatronic Multi-Agent System
+Author: Magnatronic Team
+Requires-Python: >=3.8
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: python-dotenv
+Requires-Dist: jinja2
+Requires-Dist: pydantic

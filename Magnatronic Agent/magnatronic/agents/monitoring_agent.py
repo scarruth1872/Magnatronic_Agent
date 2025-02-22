@@ -3,12 +3,16 @@
 import time
 from typing import Dict, Any
 from ..core.agent import BaseAgent
+from ..core.communication import MessageBroker
+from ..core.task_queue import TaskQueue, TaskPriority
 
 class MonitoringAgent(BaseAgent):
     """Agent responsible for system performance monitoring, conflict detection, and resource management"""
 
     def __init__(self, agent_id: str = None):
         super().__init__(agent_id, name="monitoring_agent")
+        self.message_broker = MessageBroker()
+        self.task_queue = TaskQueue()
         self.state.update({
             "system_metrics": {},
             "active_alerts": [],
@@ -20,6 +24,37 @@ class MonitoringAgent(BaseAgent):
             "task_queue": [],
             "central_repository": {}
         })
+
+    async def process_task(self, task: Dict[str, Any]) -> Dict[str, Any]:
+        """Process monitoring tasks.
+
+        Args:
+            task (Dict[str, Any]): Task data containing monitoring parameters
+
+        Returns:
+            Dict[str, Any]: Monitoring results
+        """
+        task_type = task.get("type")
+        if task_type == "performance_monitoring":
+            return await self._monitor_performance(task)
+        elif task_type == "conflict_detection":
+            return await self._detect_conflicts(task)
+        elif task_type == "resource_management":
+            return await self._manage_resources(task)
+        else:
+            raise ValueError(f"Unknown task type: {task_type}")
+
+    async def handle_message(self, message: Dict[str, Any]) -> None:
+        """Handle incoming messages from other agents.
+
+        Args:
+            message (Dict[str, Any]): Message data from another agent
+        """
+        message_type = message.get("type")
+        if message_type == "status_update":
+            await self._handle_status_update(message)
+        elif message_type == "alert":
+            await self._handle_alert(message)
 
     async def monitor_it_systems(self) -> Dict[str, Any]:
         """Monitor IT systems performance and health.

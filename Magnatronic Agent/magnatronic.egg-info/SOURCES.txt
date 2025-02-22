@@ -1,0 +1,8 @@
+README.md
+setup.py
+magnatronic/__init__.py
+magnatronic.egg-info/PKG-INFO
+magnatronic.egg-info/SOURCES.txt
+magnatronic.egg-info/dependency_links.txt
+magnatronic.egg-info/requires.txt
+magnatronic.egg-info/top_level.txt

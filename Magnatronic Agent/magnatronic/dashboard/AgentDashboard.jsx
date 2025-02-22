@@ -72,44 +72,42 @@ const AgentDashboard = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-gray-100 relative z-10">
-      {/* Header with LCARS-inspired design */}
-      <header className="bg-secondary-bg/90 backdrop-blur-sm shadow-lg py-4 px-6 sticky top-0 z-20">
-        <div className="max-w-8xl mx-auto flex items-center gap-6">
-          <div className="lcars-elbow bg-accent"></div>
-          <div className="flex-grow flex flex-col md:flex-row justify-between items-center gap-6">
-            <h1 className="text-4xl font-bold font-mono text-electric-blue glow-text truncate">
-              Agent Dashboard
-            </h1>
-            <nav className="flex flex-wrap justify-center gap-4">
-              <button
-                onClick={() => setActiveTab('overview')}
-                className={`btn-nav whitespace-nowrap ${activeTab === 'overview' ? 'bg-accent text-black' : ''}`}
-              >
-                <HiOutlineChartBar className="inline-block w-5 h-5 mr-2" />
-                Overview
-              </button>
-              <button
-                onClick={() => setActiveTab('agents')}
-                className={`btn-nav whitespace-nowrap ${activeTab === 'agents' ? 'bg-accent text-black' : ''}`}
-              >
-                <HiOutlineUsers className="inline-block w-5 h-5 mr-2" />
-                Agents
-              </button>
-              <button
-                onClick={() => setActiveTab('settings')}
-                className={`btn-nav whitespace-nowrap ${activeTab === 'settings' ? 'bg-accent text-black' : ''}`}
-              >
-                <HiOutlineCog className="inline-block w-5 h-5 mr-2" />
-                Settings
-              </button>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+    <div className="relative min-h-screen bg-primary-bg">
+      {/* Matrix Background Effect */}
+      <div className="matrix-bg"></div>
+      
       {/* Main Content */}
-      <main className="container mx-auto px-6 py-8">
+      <div className="relative z-10 container mx-auto px-4 py-8">
+        <header className="mb-8">
+          <h1 className="text-4xl font-mono text-electric-blue text-center glow-text">Magnatronic Agent System</h1>
+        </header>
+
+        {/* Navigation Tabs */}
+        <nav className="flex space-x-4 mb-6 border-b border-electric-blue/20 pb-2">
+          <button
+            onClick={() => setActiveTab('overview')}
+            className={`flex items-center px-4 py-2 rounded-t-lg ${activeTab === 'overview' ? 'text-electric-blue border-b-2 border-electric-blue' : 'text-gray-400'}`}
+          >
+            <HiOutlineChartBar className="w-5 h-5 mr-2" />
+            Overview
+          </button>
+          <button
+            onClick={() => setActiveTab('agents')}
+            className={`flex items-center px-4 py-2 rounded-t-lg ${activeTab === 'agents' ? 'text-electric-blue border-b-2 border-electric-blue' : 'text-gray-400'}`}
+          >
+            <HiOutlineUsers className="w-5 h-5 mr-2" />
+            Agents
+          </button>
+          <button
+            onClick={() => setActiveTab('settings')}
+            className={`flex items-center px-4 py-2 rounded-t-lg ${activeTab === 'settings' ? 'text-electric-blue border-b-2 border-electric-blue' : 'text-gray-400'}`}
+          >
+            <HiOutlineCog className="w-5 h-5 mr-2" />
+            Settings
+          </button>
+        </nav>
+
+        {/* Main Content Area */}
         {loading ? (
           <LoadingSpinner />
         ) : (
@@ -119,12 +117,19 @@ const AgentDashboard = () => {
                 key={agent.id}
                 agent={agent}
                 onClick={() => setSelectedAgent(agent)}
-                isSelected={selectedAgent?.id === agent.id}
               />
             ))}
           </div>
         )}
-      </main>
+
+        {/* Selected Agent Details */}
+        {selectedAgent && (
+          <AgentPage
+            agent={selectedAgent}
+            onClose={() => setSelectedAgent(null)}
+          />
+        )}
+      </div>
     </div>
   );
 };

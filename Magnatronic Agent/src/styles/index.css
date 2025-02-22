@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --color-background: #000000;
+  --color-background-secondary: #111111;
+  --color-accent-blue: #3BE0F0;
+  --color-accent-green: #10B981;
+  --color-accent-yellow: #FFD700;
+  --color-text: #EEEEEE;
+  --color-text-muted: #999999;
+  --font-primary: 'Inter', sans-serif;
+  --font-code: 'Fira Code', monospace;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  margin: 0;
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.card {
+  background-color: var(--color-background-secondary);
+  border: 1px solid rgba(59, 224, 240, 0.2);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 20px rgba(59, 224, 240, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 0 30px rgba(59, 224, 240, 0.2);
+  border-color: rgba(59, 224, 240, 0.4);
+}
+
+.status-panel {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.status-item {
+  background: linear-gradient(135deg, var(--color-background-secondary), rgba(17, 17, 17, 0.8));
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.status-item.active {
+  border-color: var(--color-accent-green);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.2);
+}
+
+.code-text {
+  font-family: var(--font-code);
+  color: var(--color-accent-blue);
+}
+
+.glow-text {
+  text-shadow: 0 0 10px var(--color-accent-blue);
+}
+
+.matrix-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.matrix-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.95));
+  z-index: 1;
+}
+
+.matrix-bg > * {
+  position: relative;
+  z-index: 2;
+}
+
+.heading {
+  color: var(--color-accent-blue);
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.agent-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.agent-item {
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  background: rgba(59, 224, 240, 0.1);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.agent-item:hover {
+  background: rgba(59, 224, 240, 0.2);
+}

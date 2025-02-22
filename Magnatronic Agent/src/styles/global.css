@@ -1,0 +1,93 @@
+:root {
+  --primary-bg: #000000;
+  --secondary-bg: #111111;
+  --accent-blue: #3BE0F0;
+  --accent-green: #10B981;
+  --accent-yellow: #FFD700;
+  --text-primary: #EEEEEE;
+  --font-inter: 'Inter', sans-serif;
+  --font-fira: 'Fira Code', monospace;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--primary-bg);
+  color: var(--text-primary);
+  font-family: var(--font-inter);
+}
+
+/* Matrix Code Stream Animation */
+@keyframes codeStream {
+  0% { opacity: 0; transform: translateY(-20px); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(20px); }
+}
+
+.code-stream {
+  animation: codeStream 2s infinite;
+  color: var(--accent-green);
+}
+
+/* Glow Effects */
+.glow-blue {
+  box-shadow: 0 0 15px var(--accent-blue);
+  transition: box-shadow 0.3s ease;
+}
+
+.glow-green {
+  box-shadow: 0 0 15px var(--accent-green);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Card Styles */
+.matrix-card {
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--accent-blue);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  transition: all 0.3s ease;
+}
+
+.matrix-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--accent-blue);
+}
+
+/* Button Styles */
+.matrix-button {
+  background-color: transparent;
+  border: 1px solid var(--accent-blue);
+  color: var(--accent-blue);
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+  font-family: var(--font-fira);
+}
+
+.matrix-button:hover {
+  background-color: var(--accent-blue);
+  color: var(--primary-bg);
+}
+
+/* Loading Animation */
+@keyframes pulse {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); opacity: 0.7; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.loading-pulse {
+  animation: pulse 1.5s infinite;
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  .code-stream,
+  .loading-pulse {
+    animation: none;
+  }
+  
+  .matrix-card:hover {
+    transform: none;
+  }
+}
